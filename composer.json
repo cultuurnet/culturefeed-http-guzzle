@@ -16,7 +16,7 @@
       "CultuurNet\\CulturefeedHttpGuzzle\\": "src"
     }
   },
-  "autoload": {
+  "autoload-dev": {
     "psr-4": {
       "CultuurNet\\CulturefeedHttpGuzzle\\": "tests"
     }
