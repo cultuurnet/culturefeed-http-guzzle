@@ -11,6 +11,7 @@ use CultureFeed_HttpResponse;
 use CultureFeed_DefaultHttpClient;
 use Exception;
 use Guzzle\Http\Exception\BadResponseException;
+use Guzzle\Http\Message\EntityEnclosingRequestInterface;
 
 class HttpClient extends CultureFeed_DefaultHttpClient implements CultureFeed_HttpClient
 {
@@ -69,6 +70,17 @@ class HttpClient extends CultureFeed_DefaultHttpClient implements CultureFeed_Ht
         foreach ($http_headers as $header) {
             list($name, $value) = explode(':', $header, 2);
             $request->addHeader($name, $value);
+        }
+
+        // Ensure by default we indicate a Content-Type of
+        // application/x-www-form-urlencoded for requests containing a body.
+        if ($request instanceof EntityEnclosingRequestInterface &&
+            !$request->hasHeader('Content-Type') &&
+            empty($request->getPostFiles())) {
+            $request->setHeader(
+                'Content-Type',
+                'application/x-www-form-urlencoded'
+            );
         }
 
         try {
