@@ -24,7 +24,7 @@
   "require": {
     "guzzle/guzzle": "~3.9.3",
     "guzzle/plugin-log": "~3.9.2",
-    "cultuurnet/culturefeed-php": "~1.5.2",
+    "cultuurnet/culturefeed-php": "~1.5",
     "psr/log": "~1.0.0"
   },
   "require-dev": {
